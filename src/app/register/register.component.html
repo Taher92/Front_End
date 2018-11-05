@@ -1,0 +1,38 @@
+<form #registerForm="ngForm" (ngSubmit)="register()" class="text-center text-primary">
+  <h3>Sign Up</h3>
+  <hr>
+  <div class="form-group">
+
+    <input [(ngModel)]="model.username" required type="text" name="username" class="form-control" placeholder="Username">
+
+  </div>
+
+  <div class="form-group">
+    <label for="genderSelection"> choose your gender : </label>
+    <select name="gender" [(ngModel)]="model.gender" class="form-control" id="genderSelection">
+      <option *ngFor="let value of genderList" [value]="value">{{value}}</option>
+
+    </select>
+  </div>
+
+  <div class="form-group">
+      <label for="DOB"> choose your date of birth : </label>
+    <input id="DOB" [(ngModel)]="model.DateOfBirth" required type="date" name="DateOfBirth" class="form-control" placeholder="Date Of Birth">
+  </div>
+
+  <div class="form-group">
+      
+    <input [(ngModel)]="model.work" required type="work" name="work" class="form-control" placeholder="Work">
+
+  </div>
+
+  <div class="form-group">
+    <input [(ngModel)]="model.password" required type="password" name="password" class="form-control" placeholder="Password">
+  </div>
+
+
+  <div class="form-group text-center">
+    <div class="btn btn-success btn-lg m-2" type="submit" (click)="register()">Register</div>
+    <div class="btn btn-default btn-lg" type="button" (click)="cancel()">Cancel</div>
+  </div>
+</form>
