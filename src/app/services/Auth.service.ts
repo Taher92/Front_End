@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { TokenResponse } from '../Models/Token';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +9,8 @@ import { TokenResponse } from '../Models/Token';
 export class AuthService {
 
   BASE_URL = 'https://localhost:44340/api/account/';
+  Jwthelper = new JwtHelperService();
+  decodenToken: any;
 
   constructor(private _http: HttpClient) { }
 
@@ -18,6 +19,8 @@ export class AuthService {
       .pipe(
         map((res: any) => {
           localStorage.setItem('token', res.token);
+          this.decodenToken = this.Jwthelper.decodeToken(res.token);
+          console.log(this.decodenToken);
         }
         )
       );
@@ -29,5 +32,12 @@ export class AuthService {
         map((res: any) => {
         }
         ));
+  }
+
+
+
+  loggedIn() {
+    const token = localStorage.getItem('token');
+    return !this.Jwthelper.isTokenExpired(token);
   }
 }

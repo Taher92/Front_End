@@ -19,8 +19,21 @@ export class RegisterComponent implements OnInit {
 
   register() {
 
-    this._aut.register(this.model).subscribe(data => console.log('data: ' + data),
-      err => console.log('reg: ' + err));
+    this._aut.register(this.model).subscribe(data => console.log('register success!'),
+      err => {
+        if (err) {
+          for (let i = 0; i < err.length; i++) {
+            if (err[i].description) {
+              console.log(err[i].description);
+            } else {
+              console.log(err[i][0]);
+
+            }
+          }
+        }
+
+      });
+
   }
 
   cancel() {
