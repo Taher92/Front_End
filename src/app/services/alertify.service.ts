@@ -6,7 +6,9 @@ declare let alertify: any;
 })
 export class AlertifyService {
 
-  constructor() { }
+  constructor() {
+    this.setPostion();
+  }
 
   confirm(message: string, okCallback: () => any) {
 
@@ -19,7 +21,7 @@ export class AlertifyService {
   }
 
   success(message: string) {
-    alertify.success(message);
+    alertify.success(message, alertify.get('notifier', 'position'));
   }
 
   error(message: string) {
@@ -32,5 +34,9 @@ export class AlertifyService {
 
   message(message: string) {
     alertify.message(message);
+  }
+
+  setPostion() {
+    alertify.set('notifier', 'position', 'bottom-center');
   }
 }

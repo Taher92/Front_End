@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" [src]="user.photoUrl" [alt]="user.userName">
+        <div class="card-body">
+          <strong>Name:</strong>
+          <p>{{user.userName}}</p>
+          <strong>Wokr:</strong>
+          <p>{{user.work}}</p>
+          <strong>Age:</strong>
+          <p>{{user.age}}</p>
+          <strong>Last seen:</strong>
+          <p>{{user.lastAktive}}</p>
+          <strong>Information:</strong>
+          <p>{{user.infos}}</p>
+        </div>
+        <div class="card-footer inline">
+          <div class="btn-group d-flex"></div>
+          <button class="btn btn-primary w-50">Like</button>
+          <button class="btn btn-success w-50">Message</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading="About {{user.userName}}">
+            <div class="container">
+              <h4>Name:</h4>
+              <p>{{user.userName}}</p>
+              <h4>Age:</h4>
+              <p>{{user.age}}</p>
+              <h4>Work:</h4>
+              <p>{{user.work}}</p>
+            </div>
+          </tab>
+          <tab heading="Infos about {{user.userName}}">
+            <h4>Information:</h4>
+            <p>{{user.infos}}</p>
+          </tab>
+          <tab heading="Photos of {{user.userName}}">
+            <h4>Photos:</h4>
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>

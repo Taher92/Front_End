@@ -1,0 +1,10 @@
+.img-thumbnail{
+    width: 85%;
+    height: 85%;
+    border: solid #bbbbbb 1px;
+    margin: 25px;
+}
+
+/* .onScreenSize{
+    height:100vh;
+} */
