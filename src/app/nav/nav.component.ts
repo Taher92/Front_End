@@ -21,7 +21,12 @@ export class NavComponent implements OnInit {
       this.alertify.success('success!');
     },
       err => {
-        console.log(err);
+        if (err.description) {
+          this.alertify.error(err.description);
+        } else {
+          this.alertify.error(err);
+        }
+
       },
       () => this._router.navigate(['/members'])
     );
@@ -33,6 +38,9 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this._auth.decodenToken = null;
+    this._auth.currentUser = null;
     this.alertify.success('Good bye !');
     this._router.navigate(['/home']);
   }

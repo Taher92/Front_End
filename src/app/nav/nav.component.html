@@ -3,14 +3,14 @@
     <a class="navbar-brand header-nav text-justify" [routerLink]="['/home']">Dating borse</a>
 
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-      <li class="nav-item zoom" routerLinkActive="active" >
-        <a class="nav-link" [routerLink]="['/members']" >Matches</a>
+      <li class="nav-item zoom" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/members']">Matches</a>
       </li>
-      <li class="nav-item zoom" routerLinkActive="active" >
+      <li class="nav-item zoom" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/lists']">Lists</a>
       </li>
-      <li class="nav-item zoom" routerLinkActive="active" >
-        <a class="nav-link disabled" [routerLink]="['/messages']" routerLinkActive="router-link-active" >Messages</a>
+      <li class="nav-item zoom" routerLinkActive="active">
+        <a class="nav-link disabled" [routerLink]="['/messages']" routerLinkActive="router-link-active">Messages</a>
       </li>
     </ul>
     <form #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" *ngIf="!loggedIn()">
@@ -22,11 +22,14 @@
     </form>
 
     <div class="dropdown" *ngIf="loggedIn()" dropdown>
+      <span>
+        <img class="img-circle" [src]="_auth.currentUser?.photoUrl">
+      </span>
       <a class="dropdown-toggle text-light dropdowntoggel" dropdownToggle>
         Welcome {{_auth.decodenToken?.unique_name | titlecase}}
       </a>
       <div class="dropdown-menu mt-3 dropdowntoggel" *dropdownMenu>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+        <a class="dropdown-item" [routerLink]="['/member/edit']"><i class="fa fa-user"></i>Edit Profile</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Log out</a>
       </div>

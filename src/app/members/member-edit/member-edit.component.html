@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <h1>Edit Profile:</h1>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" [src]="user.photoUrl" [alt]="user.userName">
+        <div class="card-body">
+          <strong>Name:</strong>
+          <p>{{user.userName}}</p>
+          <strong>Wokr:</strong>
+          <p>{{user.work}}</p>
+          <strong>Age:</strong>
+          <p>{{user.age}}</p>
+          <strong>Last seen:</strong>
+          <p>{{user.lastAktive}}</p>
+          <strong>Information:</strong>
+          <p>{{user.infos}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading="Edit {{user.userName}}' Profile">
+            <form #userForm="ngForm" (ngSubmit)="updateUserInfo()">
+              <div class="form-group">
+                <h3>Name:</h3>
+                <input name="userName" [(ngModel)]="user.userName" class="form-control">
+              </div>
+              <div class="form-group">
+                <h3>Work:</h3>
+                <input name="work" [(ngModel)]="user.work" class="form-control">
+              </div>
+              <div class="form-group">
+                <h3>Date of Birth:</h3>
+                <input name="dateOfBirth" [(ngModel)]="user.dateOfBirth" type="date" class="form-control">
+              </div>
+              <div class="form-group">
+                <h3>Information:</h3>
+                <textarea name="infos" [(ngModel)]="user.infos" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-success ml-2" [disabled]="!userForm.dirty">Save</button>
+                <button type="button" class="btn btn-danger ml-2" [routerLink]="['/members']">Cancel</button>
+              </div>
+            </form>
+
+          </tab>
+          <tab heading="Edit {{user.userName}}' Photos">
+              <app-photo-editor [photos]="user.photos" (getProfilePhotoChange)="updateProfilePhoto($event)"></app-photo-editor>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

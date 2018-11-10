@@ -28,4 +28,16 @@ export class UserService {
     return this._http.get<User>(this.BASE_URL + 'GetUserById/' + id);
   }
 
+  updateUser(id: string, user: User) {
+    return this._http.put(this.BASE_URL + 'UpdateUserDetails/' + id, user);
+  }
+
+  deleteUserPhoto(id, photoId) {
+    return this._http.post(this.BASE_URL + id + '/photos/DeletePhoto/' + photoId, {});
+  }
+
+  setPhotoAsMain(id, photoId) {
+    return this._http.post(this.BASE_URL + id + '/photos/SetPhotAsMain/' + photoId, {});
+  }
+
 }

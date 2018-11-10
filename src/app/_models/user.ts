@@ -11,4 +11,5 @@ export interface User {
     lastAktive: Date;
     photos?: Photo[];
     photoUrl: string;
+    dateOfBirth?: Date;
 }
